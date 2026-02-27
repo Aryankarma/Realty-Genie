@@ -9,7 +9,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Async Workflow Demo',
   description: 'Next.js async workflow demonstration with Prisma and PostgreSQL',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
