@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Entry {
+  id        String   @id @default(cuid())
+  title     String
+  status    Status   @default(CREATED)
+  progress  Int      @default(0)
+  result    String?
+  
+  // Concurrency control
+  lockedBy  String?
+  lockedAt  DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([status, lockedAt])
+}
+
+enum Status {
+  CREATED
+  STAGE_1
+  STAGE_2
+  COMPLETED
+  FAILED
+}
